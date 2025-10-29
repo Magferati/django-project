@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block  title %}Add Information{% endblock  %}
+
+{% block content %}
+
+<h1> Add Information here.</h1>
+{% if messages %}
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endif %}
+<form action="{% url 'add-info' %}" enctype="multipart/form-data" method="post">
+          {% csrf_token %}
+          {{form}}
+
+          <button type="submit" class="bg-black text-white w-[100px] rounded-[10px]" >Submit</button>
+</form>
+
+
+{% endblock%}

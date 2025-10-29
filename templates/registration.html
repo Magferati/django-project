@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} REGISTRATION FORM {% endblock %}
+{% load form_tags %}  {# custom add_class filter থাকলে এটি লোড করবে #}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+
+    <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Registration Form</h1>
+
+    <form action="{% url 'regform' %}" method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Username -->
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+        {{ form.username|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- First name -->
+      <div>
+        <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+        {{ form.first_name|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- Last name -->
+      <div>
+        <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+        {{ form.last_name|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        {{ form.email|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- Password1 -->
+      <div>
+        <label for="password1" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        {{ form.password1|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- Password2 -->
+      <div>
+        <label for="password2" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+        {{ form.password2|add_class:"w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+      </div><br>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow">
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <!-- Messages -->
+    {% if messages %}
+      <div class="mt-4 text-center">
+        {% for message in messages %}
+          <p class="text-sm text-green-600 font-medium">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

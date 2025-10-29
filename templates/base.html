@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static '/style.css' %}">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body>
+      {% if request.user.is_authenticated %}
+      <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow">
+      <p class="text-gray-700 text-lg">Welcome, <span class="font-semibold text-blue-600">{{ request.user.username }}</span></p>
+      <a href="{% url 'logout' %}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+      Logout
+      </a>
+      </div>
+{% endif %}
+
+        {% block content %}
+        
+       
+
+        {% endblock %}
+    </body>
+</html>
