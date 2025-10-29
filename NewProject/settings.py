@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from typing import Any,Dict
+from django.conf.global_settings import LANGUAGES as DJANGO_LANGUAGES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +28,13 @@ SECRET_KEY = 'django-insecure-y^22(c3#s43p4wf7u-3w)zdwlztqh7zya1hutfzkqv8bm==54p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,13 +114,16 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
+USE_TZ = True
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+LANGUAGES = DJANGO_LANGUAGES
 STATIC_URL = 'static/'
 STATIC_URL = 'static/'
 
@@ -130,7 +137,65 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# if DEBUG and not TEST:
+#     os.environ.setdefault("WERKZEUG_DEBUG_PIN", "off")
+#     INSTALLED_APPS.extend(["debug_toolbar", "django_extensions"])
+#     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+#     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda _: False}
+
+
+JAZZMIN_SETTINGS:Dict[str, Any]= {
+    "site_title": "My Admin",
+    "site_header": "My Dashboard",
+    "welcome_sign": "Welcome to My Admin Panel",
+    "language_chooser": True,
+    
+    # Top menu section
+    "topmenu_links": [
+        # Link to an app dropdown
+        {"app": "auth"},
+        
+        # Link to a specific model
+        {"model": "auth.User"},
+        
+        # Named URL (from your urls.py)
+        {"name": "Home", "url": "home"},
+        
+        # External URL
+        {"name": "GitHub", "url": "https://github.com/", "new_window": True},
+    ],
+    "usermenu_links": [
+    # Link using name and URL
+    {"name": "Profile", "url": "profile"},
+    {"name": "Help", "url": "https://docs.djangoproject.com/", "new_window": True},
+    {"name": "GitHub Repo", "url": "https://github.com/YourRepo"},
+],
+"custom_links": {
+    "books": [{
+        # Any Name you like
+        "name": "Make Messages",
+
+        # url name e.g `admin:index`, relative urls e.g `/admin/index` or absolute urls e.g `https://domain.com/admin/index`
+        "url": "make_messages",
+
+        # any font-awesome icon, see list here https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2 (optional)
+        "icon": "fas fa-comments",
+
+        # a list of permissions the user must have to see this link (optional)
+        "permissions": ["books.view_book"]     
+    }]
+},
+ "changeform_format": "horizontal_tabs",
+# # override change forms on a per modeladmin basis
+ "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+  
+
+}
+
