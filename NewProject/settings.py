@@ -161,7 +161,7 @@ JAZZMIN_SETTINGS:Dict[str, Any]= {
     "site_header": "My Dashboard",
     "welcome_sign": "Welcome to My Admin Panel",
     "language_chooser": True,
-    
+    "show_ui_builder" : True,
     # Top menu section
     "topmenu_links": [
         # Link to an app dropdown
@@ -203,4 +203,12 @@ JAZZMIN_SETTINGS:Dict[str, Any]= {
   
 
 }
+JAZZMIN_UI_TWEAKS = {
+    
+    "theme": "darkly",
+    "navbar_small_text": True,
+    "accent": "primary",
+}
+
+ 
 
