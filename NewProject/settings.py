@@ -17,6 +17,8 @@ from django.conf.global_settings import LANGUAGES as DJANGO_LANGUAGES
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGIN_URL = 'signin'
+LOGIN_REDIRECT_URL = 'view-pro'
 
 
 # Quick-start development settings - unsuitable for production
@@ -86,6 +88,8 @@ DATABASES = {
     }
 }
 
+#AUTH_USER_MODEL = 'authentication.CustomUser'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -118,6 +122,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 USE_TZ = True
 USE_TZ = True
+LOGIN_URL = 'login'
 
 
 # Static files (CSS, JavaScript, Images)

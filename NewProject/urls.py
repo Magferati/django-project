@@ -23,7 +23,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Index.urls')),
+    path('Index/', include('Index.urls')),
     path('auth/', include('authentication.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

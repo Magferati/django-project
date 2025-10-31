@@ -8,4 +8,4 @@ from django.contrib.auth.models import User
 def create_profile(sender,instance,created, **kwargs):
     if created:
         print(" profile created ")
-        Profile.objects.create(User=instance)
+        Profile.objects.create(user=instance)
