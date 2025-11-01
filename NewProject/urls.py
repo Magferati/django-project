@@ -26,4 +26,6 @@ urlpatterns = [
     path('Index/', include('Index.urls')),
     path('auth/', include('authentication.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/student/',include('restapi.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
