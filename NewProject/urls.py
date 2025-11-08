@@ -24,7 +24,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Index/', include('Index.urls')),
-    path('auth/', include('authentication.urls')),
+    path('api/auth/', include('authentication.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/student/',include('restapi.urls')),

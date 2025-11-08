@@ -4,7 +4,7 @@ from rest_framework.response import Response
 # Create your views here.
 from .models import Student
 from .serializars import StudentSerializar
-from rest_framework
+from rest_framework import status
 
 @api_view(["GET"])
 def get_data(request):
