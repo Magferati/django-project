@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'Index',
     'authentication',
     'restapi',
+    'rest_framework_simplejwt',
+    'rest_framework_swagger',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -62,6 +64,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
+}
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+   
 }
 
 MIDDLEWARE = [
