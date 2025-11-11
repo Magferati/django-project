@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'restapi',
     'rest_framework_simplejwt',
     'rest_framework_swagger',
+    'drf_yasg',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
